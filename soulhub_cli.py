@@ -295,24 +295,39 @@ class CatalogManager:
             response = requests.get(CatalogManager.CATALOG_URL, timeout=10)
             if response.status_code == 200:
                 return response.json()
-            else:
-                # Return example catalog if registry doesn't exist yet
-                return {
-                    'version': '1.0',
-                    'souls': {
-                        'expert-coder': {
-                            'repo': 'rblake2320/soul-expert-coder',
-                            'description': 'Expert coding assistant',
-                            'tags': ['coding', 'python', 'javascript'],
-                            'downloads': 0,
-                            'rating': 5.0
-                        }
-                    },
-                    'patterns': {},
-                    'skills': {}
+        except Exception:
+            pass
+
+        # Fallback to local catalog-example.json if remote fails
+        catalog_paths = [
+            Path('catalog-example.json'),  # Current directory
+            Path(__file__).parent / 'catalog-example.json',  # Package dir
+            Path(__file__).parent.parent / 'catalog-example.json',  # Repo root (for pip install -e .)
+        ]
+
+        for catalog_path in catalog_paths:
+            if catalog_path.exists():
+                try:
+                    with open(catalog_path) as f:
+                        return json.load(f)
+                except Exception:
+                    continue
+
+        # Final fallback: minimal example catalog
+        return {
+            'version': '1.0',
+            'souls': {
+                'expert-coder': {
+                    'repo': 'rblake2320/soul-expert-coder',
+                    'description': 'Expert coding assistant',
+                    'tags': ['coding', 'python', 'javascript'],
+                    'downloads': 0,
+                    'rating': 5.0
                 }
-        except Exception as e:
-            return {'error': str(e)}
+            },
+            'patterns': {},
+            'skills': {}
+        }
 
     @staticmethod
     def search(query: str) -> list:
@@ -426,7 +441,7 @@ SoulHub AI Memory Project
 
 ## Quick Start
 
-\`\`\`bash
+```bash
 # Deploy
 soulhub deploy
 
@@ -438,7 +453,7 @@ soulhub sync <agent-id> <target>
 
 # Check status
 soulhub status
-\`\`\`
+```
 
 ## Features
 
@@ -595,16 +610,47 @@ def install(soul_name: str):
 
 @cli.command()
 def verify():
-    """Run soul verification tests"""
-    click.echo("\n=== Running Verification Tests ===\n")
+    """Run installation verification tests"""
+    import sys
 
-    soul_mgr = SoulManager()
-    result = soul_mgr.verify_soul()
+    click.echo("\n=== Running Installation Verification ===\n")
 
-    if result['success']:
-        click.echo(result['output'])
-    else:
-        click.echo(f"Error: {result.get('error')}")
+    # Try to find verify_installation.py
+    verify_script = None
+
+    # 1. Check current directory
+    if Path('verify_installation.py').exists():
+        verify_script = Path('verify_installation.py')
+
+    # 2. Check package installation directory
+    if not verify_script:
+        package_dir = Path(__file__).parent
+        if (package_dir / 'verify_installation.py').exists():
+            verify_script = package_dir / 'verify_installation.py'
+
+    # 3. Check repo parent directory (for pip install -e .)
+    if not verify_script:
+        repo_dir = Path(__file__).parent.parent
+        if (repo_dir / 'verify_installation.py').exists():
+            verify_script = repo_dir / 'verify_installation.py'
+
+    if not verify_script:
+        click.echo("Error: verify_installation.py not found")
+        click.echo("\nTry running from the soulhub-cli repository:")
+        click.echo("  cd ~/soulhub-cli")
+        click.echo("  python verify_installation.py")
+        return
+
+    # Run the verification script
+    try:
+        result = subprocess.run(
+            [sys.executable, str(verify_script)],
+            check=False,
+            capture_output=False
+        )
+        sys.exit(result.returncode)
+    except Exception as e:
+        click.echo(f"Error running verification: {e}")
 
 
 @cli.command()
