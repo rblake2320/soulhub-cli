@@ -37,10 +37,10 @@ def print_header(text):
 def print_test(name, passed, message=""):
     """Print test result"""
     if passed:
-        symbol = f"{Colors.GREEN}✓{Colors.RESET}"
+        symbol = f"{Colors.GREEN}+{Colors.RESET}"
         status = f"{Colors.GREEN}PASS{Colors.RESET}"
     else:
-        symbol = f"{Colors.RED}✗{Colors.RESET}"
+        symbol = f"{Colors.RED}X{Colors.RESET}"
         status = f"{Colors.RED}FAIL{Colors.RESET}"
 
     print(f"{symbol} [{status}] {name}")
@@ -250,15 +250,15 @@ def generate_report(tests):
     # Overall status
     print()
     if passed == total:
-        print(f"{Colors.GREEN}{Colors.BOLD}✓ ALL TESTS PASSED{Colors.RESET}")
+        print(f"{Colors.GREEN}{Colors.BOLD}+ ALL TESTS PASSED{Colors.RESET}")
         print(f"\n{Colors.GREEN}SoulHub is fully installed and working!{Colors.RESET}")
         return True
     elif passed >= total * 0.7:
-        print(f"{Colors.YELLOW}{Colors.BOLD}⚠ PARTIAL SUCCESS{Colors.RESET}")
+        print(f"{Colors.YELLOW}{Colors.BOLD}! PARTIAL SUCCESS{Colors.RESET}")
         print(f"\n{Colors.YELLOW}Core features working, some optional features missing.{Colors.RESET}")
         return True
     else:
-        print(f"{Colors.RED}{Colors.BOLD}✗ TESTS FAILED{Colors.RESET}")
+        print(f"{Colors.RED}{Colors.BOLD}X TESTS FAILED{Colors.RESET}")
         print(f"\n{Colors.RED}Please fix failing tests and run again.{Colors.RESET}")
         return False
 
