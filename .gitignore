@@ -1,0 +1,77 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.hypothesis/
+
+# SoulHub specific
+.soulhub/
+*.soul.bak
+training_data/
+multimodal_cache/
+
+# OS
+.DS_Store
+Thumbs.db
+.directory
+
+# Logs
+*.log
+logs/
+
+# Temporary
+*.tmp
+tmp/
+temp/
+
+# Secrets
+.env
+.env.local
+secrets.json
+*.key
+*.pem
+
+# Docker
+docker-compose.override.yml
+
+# Redis
+dump.rdb
+
+# Git
+*.orig

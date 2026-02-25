@@ -1,0 +1,117 @@
+{
+  "catalog_version": "1.0",
+  "last_updated": "2026-02-25T02:30:00Z",
+  "souls": {
+    "expert-coder": {
+      "repo": "rblake2320/soul-expert-coder",
+      "description": "Expert coding assistant with Python, JavaScript, and systems programming",
+      "tags": ["coding", "python", "javascript", "systems"],
+      "downloads": 1250,
+      "rating": 4.8,
+      "author": "rblake2320",
+      "version": "1.2.0",
+      "created": "2026-01-15",
+      "updated": "2026-02-20",
+      "verified": true
+    },
+    "medical-assistant": {
+      "repo": "healthco/soul-medical-ai",
+      "description": "HIPAA-compliant medical knowledge assistant",
+      "tags": ["healthcare", "medical", "hipaa", "compliance"],
+      "downloads": 890,
+      "rating": 4.9,
+      "author": "healthco",
+      "version": "2.0.1",
+      "created": "2025-12-10",
+      "updated": "2026-02-18",
+      "verified": true
+    },
+    "data-analyst": {
+      "repo": "dataexp/soul-data-analyst",
+      "description": "Data analysis specialist with pandas, SQL, and visualization",
+      "tags": ["data", "analysis", "pandas", "sql", "viz"],
+      "downloads": 1520,
+      "rating": 4.7,
+      "author": "dataexp",
+      "version": "1.5.2",
+      "created": "2026-01-05",
+      "updated": "2026-02-22",
+      "verified": true
+    },
+    "devops-expert": {
+      "repo": "cloudops/soul-devops",
+      "description": "DevOps and cloud infrastructure specialist",
+      "tags": ["devops", "kubernetes", "docker", "cloud", "aws"],
+      "downloads": 980,
+      "rating": 4.6,
+      "author": "cloudops",
+      "version": "1.0.5",
+      "created": "2025-11-20",
+      "updated": "2026-02-15",
+      "verified": false
+    },
+    "legal-advisor": {
+      "repo": "legaltech/soul-legal",
+      "description": "Legal research and document analysis assistant",
+      "tags": ["legal", "research", "contracts", "compliance"],
+      "downloads": 450,
+      "rating": 4.9,
+      "author": "legaltech",
+      "version": "1.1.0",
+      "created": "2025-12-01",
+      "updated": "2026-02-10",
+      "verified": true
+    }
+  },
+  "patterns": {
+    "npm-package-validation": {
+      "repo": "community/pattern-npm-validation",
+      "description": "Always check npm package exists before adding to package.json",
+      "category": "error-prevention",
+      "upvotes": 2400,
+      "author": "community",
+      "created": "2026-01-20"
+    },
+    "git-commit-verification": {
+      "repo": "community/pattern-git-verification",
+      "description": "Verify git status before destructive operations",
+      "category": "safety",
+      "upvotes": 1890,
+      "author": "community",
+      "created": "2026-01-25"
+    },
+    "api-key-security": {
+      "repo": "security/pattern-api-keys",
+      "description": "Never commit API keys, use environment variables",
+      "category": "security",
+      "upvotes": 3200,
+      "author": "security",
+      "created": "2025-12-15"
+    }
+  },
+  "skills": {
+    "code-reviewer": {
+      "repo": "rblake2320/skill-code-review",
+      "description": "Advanced code review with security scanning",
+      "tags": ["security", "code-quality", "review"],
+      "downloads": 780,
+      "author": "rblake2320",
+      "version": "1.0.0"
+    },
+    "test-generator": {
+      "repo": "testing/skill-test-gen",
+      "description": "Automatic test generation for Python and JavaScript",
+      "tags": ["testing", "automation", "python", "javascript"],
+      "downloads": 1120,
+      "author": "testing",
+      "version": "2.1.0"
+    }
+  },
+  "metadata": {
+    "total_souls": 5,
+    "total_patterns": 3,
+    "total_skills": 2,
+    "total_downloads": 9280,
+    "contributors": 8
+  }
+}

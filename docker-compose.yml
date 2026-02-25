@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  # SoulHub Real-Time Server
+  soulhub-server:
+    build: .
+    command: soulhub serve --host 0.0.0.0 --port 8766
+    ports:
+      - "8766:8766"
+    depends_on:
+      - redis
+    environment:
+      - REDIS_URL=redis://redis:6379
+    volumes:
+      - ./data:/app/data
+
+  # Redis for pub/sub
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+
+  # Ollama for local models
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+
+  # PostgreSQL for production
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: soulhub
+      POSTGRES_USER: soulhub
+      POSTGRES_PASSWORD: soulhub_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  redis-data:
+  ollama-data:
+  postgres-data:
