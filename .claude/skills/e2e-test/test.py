@@ -358,23 +358,23 @@ class SoulHubE2ETest:
         skipped = sum(1 for r in self.results if r['status'] == 'SKIP')
         duration = self.end_time - self.start_time
 
-        with open(report_file, 'w') as f:
+        with open(report_file, 'w', encoding='utf-8') as f:
             f.write(f"# SoulHub E2E Test Report\n\n")
             f.write(f"**Generated**: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
             f.write(f"**Duration**: {duration:.1f}s\n")
             f.write(f"**Total Tests**: {total}\n")
-            f.write(f"**Passed**: {passed} ✓\n")
-            f.write(f"**Failed**: {failed} ✗\n")
-            f.write(f"**Skipped**: {skipped} ⊘\n\n")
+            f.write(f"**Passed**: {passed} +\n")
+            f.write(f"**Failed**: {failed} X\n")
+            f.write(f"**Skipped**: {skipped} -\n\n")
 
             f.write("---\n\n")
             f.write("## Test Results\n\n")
 
             for result in self.results:
                 status_icon = {
-                    'PASS': '✓',
-                    'FAIL': '✗',
-                    'SKIP': '⊘'
+                    'PASS': '+',
+                    'FAIL': 'X',
+                    'SKIP': '-'
                 }[result['status']]
 
                 f.write(f"### {status_icon} {result['name']}\n")

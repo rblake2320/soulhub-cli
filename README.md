@@ -1,4 +1,4 @@
-# e2e-test-1772205615
+# e2e-test-manual
 
 SoulHub AI Memory Project
 
@@ -29,7 +29,7 @@ soulhub status
 
 ## Deployment
 
-Site URL: https://e2e-test-1772205615.pages.dev
+Site URL: https://e2e-test-manual.pages.dev
 
 ---
 
